@@ -1,6 +1,6 @@
 {
     "id": "fd1d030f-d11a-4246-bb0e-3d64a84f714f",
-    "name": "discord-webhook",
+    "name": "ado-discord-webhook",
     "friendlyName": "Discord Webhook",
     "description": "Allows the sending of custom messages to a Discord Webhook URL",
     "helpMarkDown": "",
@@ -8,7 +8,7 @@
     "author": "Robert Burke",
     "version": {
         "Major": 0,
-        "Minor": 2,
+        "Minor": 1,
         "Patch": 0
     },
     "instanceNameFormat": "Discord Webhook",

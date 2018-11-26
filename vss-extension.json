@@ -1,8 +1,8 @@
 {
     "manifestVersion": 1,
-    "id": "discord-webhook",
+    "id": "ado-discord-webhook",
     "name": "Discord Webhook",
-    "version": "0.2.0",
+    "version": "0.1.0",
     "publisher": "robmburke",
     "targets": [
         {
