@@ -1,0 +1,30 @@
+{
+    "id": "fd1d030f-d11a-4246-bb0e-3d64a84f714f",
+    "name": "discord-webhook",
+    "friendlyName": "Discord Webhook",
+    "description": "Allows the sending of custom messages to a Discord Webhook URL",
+    "helpMarkDown": "",
+    "category": "Utility",
+    "author": "Robert Burke",
+    "version": {
+        "Major": 0,
+        "Minor": 2,
+        "Patch": 0
+    },
+    "instanceNameFormat": "Discord Webhook",
+    "inputs": [
+        {
+            "name": "samplestring",
+            "type": "string",
+            "label": "Sample String",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "A sample string"
+        }
+    ],
+    "execution": {
+        "Node": {
+            "target": "index.js"
+        }
+    }
+}
