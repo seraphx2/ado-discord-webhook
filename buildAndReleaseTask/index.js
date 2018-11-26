@@ -9,15 +9,37 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const tl = require("azure-pipelines-task-lib/task");
+let request = require('request');
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const inputString = tl.getInput('samplestring', true);
-            if (inputString == 'bad') {
-                tl.setResult(tl.TaskResult.Failed, 'Bad input was given');
-                return;
-            }
-            console.log('Hello', inputString);
+            const channelId = tl.getInput('channelId', true);
+            const webhookKey = tl.getInput('webhookKey', true);
+            const name = tl.getInput('name');
+            const avatar = tl.getInput('avatar');
+            const messageType = tl.getInput('messageType', true);
+            const content = tl.getInput('content');
+            const embeds = tl.getInput('embeds');
+            var payload = {};
+            if (name)
+                payload["username"] = name;
+            if (avatar)
+                payload["avatar_url"] = avatar;
+            if (messageType === "content")
+                payload["content"] = content;
+            else if (messageType === "embeds") { }
+            payload["embeds"] = JSON.parse(embeds);
+            request({
+                url: `https://discordapp.com/api/webhooks/${channelId}/${webhookKey}`,
+                method: "POST",
+                json: true,
+                body: payload
+            }, function (error, response, body) {
+                if (response.statusCode !== 204)
+                    tl.setResult(tl.TaskResult.Failed, `${response.statusCode} ${body.message}`);
+                else
+                    tl.setResult(tl.TaskResult.Succeeded, 'webhook message successful');
+            });
         }
         catch (err) {
             tl.setResult(tl.TaskResult.Failed, err.message);

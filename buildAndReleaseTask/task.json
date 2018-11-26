@@ -7,19 +7,88 @@
     "category": "Utility",
     "author": "Robert Burke",
     "version": {
-        "Major": 0,
-        "Minor": 1,
+        "Major": 1,
+        "Minor": 0,
         "Patch": 0
     },
     "instanceNameFormat": "Discord Webhook",
+    "groups": [
+        {
+            "name": "credentials",
+            "displayName": "Webhook Credentials",
+            "isExpanded": true
+        },
+        {
+            "name": "bot",
+            "displayName": "Bot Info",
+            "isExpanded": true
+        },
+        {
+            "name": "message",
+            "displayName": "Message Details",
+            "isExpanded": true
+        }
+    ],
     "inputs": [
         {
-            "name": "samplestring",
+            "groupName": "credentials",
+            "name": "channelId",
             "type": "string",
-            "label": "Sample String",
-            "defaultValue": "",
+            "label": "Channel ID",
             "required": true,
-            "helpMarkDown": "A sample string"
+            "helpMarkDown": "Found in the webhook URL: `https://discordapp.com/api/webhooks/**${channelId}**/${webhookKey}`"
+        },
+        {
+            "groupName": "credentials",
+            "name": "webhookKey",
+            "type": "string",
+            "label": "Webhook Key",
+            "required": true,
+            "helpMarkDown": "Found in the webhook URL: `https://discordapp.com/api/webhooks/${channelId}/**${webhookKey}**`"
+        },
+        {
+            "groupName": "bot",
+            "name": "name",
+            "type": "string",
+            "label": "Name",
+            "required": false,
+            "helpMarkDown": "Overrides default name for webhook"
+        },
+        {
+            "groupName": "bot",
+            "name": "avatar",
+            "type": "string",
+            "label": "Avatar Image URL",
+            "required": false,
+            "helpMarkDown": "Overrides default avatar image for webhook"
+        },
+        {
+            "groupName": "message",
+            "name": "messageType",
+            "type": "pickList",
+            "label": "Message Type",
+            "required": true,
+            "helpMarkDown": "Detarmines the amount of customizability of your webhook message.",
+            "options": {
+                "content": "Content",
+                "embeds": "Embeds"
+            }
+        },
+        {
+            "groupName": "message",
+            "name": "content",
+            "type": "string",
+            "required": true,
+            "visibleRule": "messageType=content",
+            "helpMarkDown": "Allows only a simple, message. Supports Discord markdown."
+        },
+        {
+            "groupName": "message",
+            "name": "embeds",
+            "type": "multiLine",
+            "required": true,
+            "visibleRule": "messageType=embeds",
+            "helpMarkDown": "This allows for a more complex, JSON-driven definition of your message which is injected into the [embeds](https://discordapp.com/developers/docs/resources/webhook#execute-webhook) property."
         }
     ],
     "execution": {
