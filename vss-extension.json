@@ -2,8 +2,9 @@
     "manifestVersion": 1,
     "id": "ado-discord-webhook",
     "name": "Discord Webhook",
-    "version": "1.0.0",
+    "version": "1.4.0",
     "publisher": "robmburke",
+    "public": true,
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
@@ -21,6 +22,15 @@
             "path": "buildAndReleaseTask"
         }
     ],
+    "content": {
+        "details": {
+            "path": "overview.md"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/seraphx2/ado-discord-webhook"
+    },
     "contributions": [
         {
             "id": "custom-build-release-task",

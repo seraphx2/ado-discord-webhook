@@ -8,7 +8,7 @@
     "author": "Robert Burke",
     "version": {
         "Major": 1,
-        "Minor": 0,
+        "Minor": 4,
         "Patch": 0
     },
     "instanceNameFormat": "Discord Webhook",
@@ -36,7 +36,7 @@
             "type": "string",
             "label": "Channel ID",
             "required": true,
-            "helpMarkDown": "Found in the webhook URL: `https://discordapp.com/api/webhooks/**${channelId}**/${webhookKey}`"
+            "helpMarkDown": "Found in the webhook URL: https://discordapp.com/api/webhooks/**${channelId}**/${webhookKey}"
         },
         {
             "groupName": "credentials",
@@ -44,7 +44,7 @@
             "type": "string",
             "label": "Webhook Key",
             "required": true,
-            "helpMarkDown": "Found in the webhook URL: `https://discordapp.com/api/webhooks/${channelId}/**${webhookKey}**`"
+            "helpMarkDown": "Found in the webhook URL: https://discordapp.com/api/webhooks/${channelId}/**${webhookKey}**"
         },
         {
             "groupName": "bot",
@@ -52,7 +52,7 @@
             "type": "string",
             "label": "Name",
             "required": false,
-            "helpMarkDown": "Overrides default name for webhook"
+            "helpMarkDown": "Overrides default name"
         },
         {
             "groupName": "bot",
@@ -60,7 +60,7 @@
             "type": "string",
             "label": "Avatar Image URL",
             "required": false,
-            "helpMarkDown": "Overrides default avatar image for webhook"
+            "helpMarkDown": "Overrides default avatar image"
         },
         {
             "groupName": "message",
@@ -68,7 +68,7 @@
             "type": "pickList",
             "label": "Message Type",
             "required": true,
-            "helpMarkDown": "Detarmines the amount of customizability of your webhook message.",
+            "helpMarkDown": "Determines the amount of customizability of your webhook message",
             "options": {
                 "content": "Content",
                 "embeds": "Embeds"
@@ -80,7 +80,7 @@
             "type": "string",
             "required": true,
             "visibleRule": "messageType=content",
-            "helpMarkDown": "Allows only a simple, message. Supports Discord markdown."
+            "helpMarkDown": "Allows only a simple, message and supports Discord markdown"
         },
         {
             "groupName": "message",
@@ -88,7 +88,7 @@
             "type": "multiLine",
             "required": true,
             "visibleRule": "messageType=embeds",
-            "helpMarkDown": "This allows for a more complex, JSON-driven definition of your message which is injected into the [embeds](https://discordapp.com/developers/docs/resources/webhook#execute-webhook) property."
+            "helpMarkDown": "This allows for a more complex, JSON-driven definition of your message which is injected into the [embeds](https://discordapp.com/developers/docs/resources/webhook#execute-webhook) property"
         }
     ],
     "execution": {
