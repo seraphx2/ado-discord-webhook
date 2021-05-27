@@ -1,6 +1,10 @@
 # Discord Webhook
 
-This is a rather simple task that allows the integration of a Discord Webhook into your pipeline.
+This is a rather simple task that allows the integration of a Discord Webhook into your BUILD or RELEASE pipeline.
+
+Note: This IS NOT a Service Connection.
+
+Install [Discord Webhook](https://marketplace.visualstudio.com/items?itemName=robmburke.ado-discord-webhook).
 
 ## Key documentation
 Reading the Discord documentation, will go a long way to help utilizing this task and understanding how it works.
