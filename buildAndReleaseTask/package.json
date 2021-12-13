@@ -1,0 +1,35 @@
+{
+  "name": "ado-discord-webhook",
+  "version": "1.7.0",
+  "description": "Allows the sending of custom messages to a Discord Webhook URL",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seraphx2/ado-discord-webhook.git"
+  },
+  "keywords": [
+    "azure",
+    "devops",
+    "discord",
+    "webhook"
+  ],
+  "author": "Robert Burke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seraphx2/ado-discord-webhook/issues"
+  },
+  "homepage": "https://github.com/seraphx2/ado-discord-webhook#readme",
+  "dependencies": {
+    "@types/jest": "^27.0.3",
+    "@types/node": "^16.11.12",
+    "@types/q": "^1.5.5",
+    "azure-pipelines-task-lib": "^3.1.10",
+    "eol": "^0.9.1",
+    "jest": "^27.4.4",
+    "request": "^2.88.2",
+    "ts-jest": "^27.1.1"
+  }
+}

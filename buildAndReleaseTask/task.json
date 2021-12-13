@@ -8,8 +8,8 @@
     "author": "Robert Burke",
     "version": {
         "Major": 1,
-        "Minor": 5,
-        "Patch": 0
+        "Minor": 7,
+        "Patch": 13
     },
     "instanceNameFormat": "Discord Webhook",
     "groups": [
@@ -92,7 +92,7 @@
         }
     ],
     "execution": {
-        "Node": {
+        "Node10": {
             "target": "index.js"
         }
     }
