@@ -7,8 +7,8 @@
     "category": "Utility",
     "author": "Robert Burke",
     "version": {
-        "Major": 1,
-        "Minor": 8,
+        "Major": 2,
+        "Minor": 0,
         "Patch": 0
     },
     "instanceNameFormat": "Discord Webhook",
@@ -32,7 +32,7 @@
     "inputs": [
         {
             "groupName": "credentials",
-            "name": "channelId",
+            "name": "webhookId",
             "type": "string",
             "label": "Webhook ID",
             "required": true,

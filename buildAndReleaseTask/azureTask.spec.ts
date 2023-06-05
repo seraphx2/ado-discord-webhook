@@ -27,7 +27,7 @@ describe('Sample task tests', () => {
     });
 
     it('should succeed with valid inputs', async () => {
-        setInput('channelId', testCredentials.webhookId);
+        setInput('webhookId', testCredentials.webhookId);
         setInput('webhookKey', testCredentials.webhookKey);
         setInput('content', 'Test <@' + testCredentials.mentionUserId + '>');
         setInput('name', 'Azure DevOps TEST');
@@ -41,8 +41,8 @@ describe('Sample task tests', () => {
         expect(success).toBe(true);//, 'should have succeeded');
     });
 
-    it('should fail with invalid channelId and webhookKey', async () => {
-        setInput('channelId', 'invalid_channel');
+    it('should fail with invalid webhookId and webhookKey', async () => {
+        setInput('webhookId', 'invalid_channel');
         setInput('webhookKey', 'invalid_webhook');
 
         const task = new AzureTask();

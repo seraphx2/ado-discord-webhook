@@ -97,11 +97,11 @@ export class AzureTask {
     async run(): Promise<boolean> {
 
         try {
-            const channelId: string = String(this.tl.getInput('channelId', true));
+            const webhookId: string = String(this.tl.getInput('webhookId', true));
             const webhookKey: string = String(this.tl.getInput('webhookKey', true));
             const payload: any = this.generatePayload();
 
-            const response = await axios.default.post(`https://discordapp.com/api/webhooks/${channelId}/${webhookKey}`, payload);
+            const response = await axios.default.post(`https://discordapp.com/api/webhooks/${webhookId}/${webhookKey}`, payload);
             if (!this.isSuccess(response)) {
                 console.log('Request failed [text]: ', response.statusText);
                 console.log('Request failed [data]: ', response.data);

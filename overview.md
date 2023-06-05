@@ -25,11 +25,11 @@ By entering one or multiple **Embeds** into the task, you have total control ove
 ### YAML
 Following task sends a discord notification message when one of the previous tasks failed.
 ```yaml
-- task: ado-discord-webhook@1
+- task: ado-discord-webhook@2
   displayName: 'Discord Notification for build failure'
   condition: failed()
   inputs:
-    webhookId: '$(discord_channelId)'
+    webhookId: '$(discord_webhookId)'
     webhookKey: '$(discord_webhookKey)'
     content: '<@&$(discord_mentionRoleId)>'
     embeds: |
