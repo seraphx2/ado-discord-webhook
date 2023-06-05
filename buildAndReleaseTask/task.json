@@ -34,9 +34,9 @@
             "groupName": "credentials",
             "name": "channelId",
             "type": "string",
-            "label": "Channel ID",
+            "label": "Webhook ID",
             "required": true,
-            "helpMarkDown": "Found in the webhook URL: https://discordapp.com/api/webhooks/**${channelId}**/${webhookKey}"
+            "helpMarkDown": "Found in the webhook URL: https://discordapp.com/api/webhooks/**${webhookId}**/${webhookKey}"
         },
         {
             "groupName": "credentials",
@@ -44,7 +44,7 @@
             "type": "string",
             "label": "Webhook Key",
             "required": true,
-            "helpMarkDown": "Found in the webhook URL: https://discordapp.com/api/webhooks/${channelId}/**${webhookKey}**"
+            "helpMarkDown": "Found in the webhook URL: https://discordapp.com/api/webhooks/${webhookId}/**${webhookKey}**"
         },
         {
             "groupName": "bot",
@@ -73,6 +73,13 @@
             "name": "embeds",
             "type": "multiLine",
             "helpMarkDown": "This allows for a more complex, JSON-driven definition of your message which is injected into the [embeds](https://discordapp.com/developers/docs/resources/webhook#execute-webhook) property"
+        },
+        {
+            "groupName": "message",
+            "name": "tts",
+            "type": "boolean",
+            "label": "Text to Speech",
+            "helpMarkDown": "This allows for the message content to be spoken out loud."
         }
     ],
     "execution": {
