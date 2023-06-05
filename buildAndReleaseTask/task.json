@@ -8,8 +8,8 @@
     "author": "Robert Burke",
     "version": {
         "Major": 1,
-        "Minor": 7,
-        "Patch": 13
+        "Minor": 8,
+        "Patch": 0
     },
     "instanceNameFormat": "Discord Webhook",
     "groups": [
@@ -64,30 +64,14 @@
         },
         {
             "groupName": "message",
-            "name": "messageType",
-            "type": "pickList",
-            "label": "Message Type",
-            "required": true,
-            "helpMarkDown": "Determines the amount of customizability of your webhook message",
-            "options": {
-                "content": "Content",
-                "embeds": "Embeds"
-            }
-        },
-        {
-            "groupName": "message",
             "name": "content",
-            "type": "string",
-            "required": true,
-            "visibleRule": "messageType=content",
+            "type": "multiLine",
             "helpMarkDown": "Allows only a simple, message and supports Discord markdown"
         },
         {
             "groupName": "message",
             "name": "embeds",
             "type": "multiLine",
-            "required": true,
-            "visibleRule": "messageType=embeds",
             "helpMarkDown": "This allows for a more complex, JSON-driven definition of your message which is injected into the [embeds](https://discordapp.com/developers/docs/resources/webhook#execute-webhook) property"
         }
     ],

@@ -1,7 +1,5 @@
-import tl = require('azure-pipelines-task-lib/task');
-import { stringify } from 'querystring';
-let request = require('request');
-//import { Newline } from './utility/newline';
+import tl from 'azure-pipelines-task-lib/task';
+import axios from 'axios'
 
 async function run() {
     try {
@@ -9,39 +7,50 @@ async function run() {
         const webhookKey: string = String(tl.getInput('webhookKey', true));
         const name: string | undefined = tl.getInput('name');
         const avatar: string | undefined = tl.getInput('avatar');
-        const messageType: string = String(tl.getInput('messageType', true));
-        const content: string = String(tl.getInput('content'));
-        const embeds: string = String(tl.getInput('embeds'));
+        const content: string | undefined = String(tl.getInput('content'));
+        const embeds: string | undefined = String(tl.getInput('embeds'));
 
-        var payload:any = {};
+        let payload: any = {};
 
-        if (name)
+        if (name && name.trim().length > 0)
             payload["username"] = name;
 
         //if (avatar)
         //    payload["avatar_url"] = avatar;
 
-        if (messageType === "content")
+        if (content && content.trim().length > 0)
             payload["content"] = content;
-        else if (messageType === "embeds")
+
+        if (embeds && embeds.trim().length > 0) {
+            let embedData: any[] | any = JSON.parse(embeds);
+            if(!Array.isArray(embedData)) {
+                embedData = [embedData];
+            }
+            (<any[]>embedData).forEach(x => {
+                if(typeof x.color === 'string' && String(x.color).startsWith('0x')) {
+                    x.color = Number(x.color);
+                } else if(typeof x.color === 'string') {
+                    x.color = Number('0x' + x.color);
+                }
+            });
+
+
             payload["embeds"] = JSON.parse(embeds);
-        //payload["embeds"] = JSON.parse(new Newline().generate(embeds));
-        
-        request({
-            url: `https://discordapp.com/api/webhooks/${channelId}/${webhookKey}`,
-            method: "POST",
-            json: true,
-            body: payload
-        }, function (error:any, response:any, body:any){
-            if (response.statusCode !== 204)
-                tl.setResult(tl.TaskResult.Failed, `${JSON.stringify(response)}`);
-            else
-                tl.setResult(tl.TaskResult.Succeeded, 'webhook message successful');
-        });
-        
+            if(typeof payload["embeds"][0].color === 'string') {
+
+            }
+        }
+
+        const response = await axios.post(`https://discordapp.com/api/webhooks/${channelId}/${webhookKey}`, payload);
+        if(response.status < 200 || response.status > 299) {
+            tl.setResult(tl.TaskResult.Failed, `${JSON.stringify(response)}`);
+            return;
+        }
+
+        tl.setResult(tl.TaskResult.Succeeded, 'webhook message successful');
     } catch (err: any) {
         tl.setResult(tl.TaskResult.Failed, err.message);
     }
 }
 
-run();
+run().then(x => 'run completed').catch(x => 'run failed');
