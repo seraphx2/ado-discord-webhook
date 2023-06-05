@@ -21,7 +21,7 @@
     "webhook"
   ],
   "author": "Robert Burke",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/seraphx2/ado-discord-webhook/issues"
   },
