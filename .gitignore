@@ -1,3 +1,8 @@
-*/node_modules
-*.vsix
-*/*.jsv
+**/node_modules
+**/*.vsix
+**/*.jsv
+**/*.js
+**/*.js.map
+!/buildAndReleaseTask/jest.config.js
+.idea/
+/buildAndReleaseTask/test-credentials.json

@@ -6,13 +6,17 @@ Note: This IS NOT a Service Connection.
 
 Install [Discord Webhook](https://marketplace.visualstudio.com/items?itemName=robmburke.ado-discord-webhook).
 
-## Key documentation
-Reading the Discord documentation, will go a long way to help utilizing this task and understanding how it works.
+## Usage
+Please refer to the [extension overview](/overview.md) for a detailed explanation on how to use it.
 
-When [creating a webhook](https://support.discordapp.com/hc/en-us/articles/228383668-Intro-to-Webhooks) for a channel in a Discord server, you will be given a url which contains the Channel ID and the Secret Key for that webhook in this format: https://discordapp.com/api/webhooks/{channelId}/{webhookKey}. You will not need to provide the url to the task, but rather just the Channel ID and Secret Key.
-(The first section in the link above, *Making a Webhook*, is all that needs to be followed to be able to use this task)
+## Development
+### Getting started
+1. Clone the repository
+2. Navigate to `buildAndReleaseTask`
+3. Run `pnpm install`
+4. Run `pnpm run build` to build the extension
 
-Please read the [Discord webhook message API](https://discordapp.com/developers/docs/resources/webhook#execute-webhook) to better understand the fields provided in this task; especially the [embeds](https://discordapp.com/developers/docs/resources/channel#embed-object) section if you want more control over your message. By selecting the Message Type of **Embeds** in the task, you have total control over the message content based on what the API expects to be provided in JSON content.
-
-## Screenshot
-![Screenshot](https://user-images.githubusercontent.com/11561820/50299671-2c619c00-0450-11e9-87c2-530e65e4d3ea.png)
+### Testing
+1. Make sure you followed the [Getting started](#getting-started) section.
+2. Fill your webhook credentials (for testing purpose) into the `test-credentials.json` file.
+3. Run `pnpm test`

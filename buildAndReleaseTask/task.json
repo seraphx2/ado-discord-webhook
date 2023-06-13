@@ -7,9 +7,9 @@
     "category": "Utility",
     "author": "Robert Burke",
     "version": {
-        "Major": 1,
-        "Minor": 7,
-        "Patch": 13
+        "Major": 2,
+        "Minor": 0,
+        "Patch": 0
     },
     "instanceNameFormat": "Discord Webhook",
     "groups": [
@@ -32,11 +32,11 @@
     "inputs": [
         {
             "groupName": "credentials",
-            "name": "channelId",
+            "name": "webhookId",
             "type": "string",
-            "label": "Channel ID",
+            "label": "Webhook ID",
             "required": true,
-            "helpMarkDown": "Found in the webhook URL: https://discordapp.com/api/webhooks/**${channelId}**/${webhookKey}"
+            "helpMarkDown": "Found in the webhook URL: https://discordapp.com/api/webhooks/**${webhookId}**/${webhookKey}"
         },
         {
             "groupName": "credentials",
@@ -44,7 +44,7 @@
             "type": "string",
             "label": "Webhook Key",
             "required": true,
-            "helpMarkDown": "Found in the webhook URL: https://discordapp.com/api/webhooks/${channelId}/**${webhookKey}**"
+            "helpMarkDown": "Found in the webhook URL: https://discordapp.com/api/webhooks/${webhookId}/**${webhookKey}**"
         },
         {
             "groupName": "bot",
@@ -64,35 +64,26 @@
         },
         {
             "groupName": "message",
-            "name": "messageType",
-            "type": "pickList",
-            "label": "Message Type",
-            "required": true,
-            "helpMarkDown": "Determines the amount of customizability of your webhook message",
-            "options": {
-                "content": "Content",
-                "embeds": "Embeds"
-            }
-        },
-        {
-            "groupName": "message",
             "name": "content",
-            "type": "string",
-            "required": true,
-            "visibleRule": "messageType=content",
+            "type": "multiLine",
             "helpMarkDown": "Allows only a simple, message and supports Discord markdown"
         },
         {
             "groupName": "message",
             "name": "embeds",
             "type": "multiLine",
-            "required": true,
-            "visibleRule": "messageType=embeds",
             "helpMarkDown": "This allows for a more complex, JSON-driven definition of your message which is injected into the [embeds](https://discordapp.com/developers/docs/resources/webhook#execute-webhook) property"
+        },
+        {
+            "groupName": "message",
+            "name": "tts",
+            "type": "boolean",
+            "label": "Text to Speech",
+            "helpMarkDown": "This allows for the message content to be spoken out loud."
         }
     ],
     "execution": {
-        "Node10": {
+        "Node": {
             "target": "index.js"
         }
     }
