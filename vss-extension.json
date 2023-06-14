@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "ado-discord-webhook",
     "name": "Discord Webhook",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "publisher": "robmburke",
     "public": true,
     "targets": [
