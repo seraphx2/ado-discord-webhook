@@ -1,11 +1,10 @@
 {
   "name": "ado-discord-webhook",
-  "version": "1.8.0",
+  "version": "2.0.0",
   "description": "Allows the sending of custom messages to a Discord Webhook URL",
   "main": "index.js",
   "scripts": {
     "test": "pnpm run build:test && jest --config ./jest.config.js --forceExit",
-
     "build": "tsc --project tsconfig.json",
     "build:test": "tsc --project tsconfig.spec.json",
     "start": "ts-node index.ts"

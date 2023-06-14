@@ -71,7 +71,7 @@ export class AzureTask {
         }
 
         if (avatarUrl && avatarUrl.length > 0) {
-           payload["avatar_url"] = avatarUrl;
+            payload["avatar_url"] = avatarUrl;
         }
 
         payload["tts"] = tts;
