@@ -1,8 +1,10 @@
 **/node_modules
 **/*.vsix
 **/*.jsv
-**/*.js
+**/*.spec.js
+**/*.spec.js.map
 **/*.js.map
+#**/*.js # currently disabled because it breaks the extensions
 !/buildAndReleaseTask/jest.config.js
 .idea/
 /buildAndReleaseTask/test-credentials.json
