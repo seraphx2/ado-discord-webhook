@@ -9,7 +9,7 @@
     "version": {
         "Major": 2,
         "Minor": 0,
-        "Patch": 1
+        "Patch": 9
     },
     "instanceNameFormat": "Discord Webhook",
     "groups": [
@@ -85,7 +85,7 @@
         }
     ],
     "execution": {
-        "Node": {
+        "Node16": {
             "target": "index.js"
         }
     }

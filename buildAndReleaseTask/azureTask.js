@@ -1,9 +1,17 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AzureTask = void 0;
 const axios = require("axios");
 class AzureTask {
-    tl;
     constructor() {
         this.tl = require('azure-pipelines-task-lib/task');
     }
@@ -73,25 +81,27 @@ class AzureTask {
     isSuccess(response) {
         return response.status >= 200 && response.status < 300;
     }
-    async run() {
-        try {
-            const webhookId = String(this.tl.getInput('webhookId', true));
-            const webhookKey = String(this.tl.getInput('webhookKey', true));
-            const payload = this.generatePayload();
-            const response = await axios.default.post(`https://discordapp.com/api/webhooks/${webhookId}/${webhookKey}`, payload);
-            if (!this.isSuccess(response)) {
-                console.log('Request failed [text]: ', response.statusText);
-                console.log('Request failed [data]: ', response.data);
-                this.tl.setResult(this.tl.TaskResult.Failed, `${JSON.stringify(response)}`);
+    run() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const webhookId = String(this.tl.getInput('webhookId', true));
+                const webhookKey = String(this.tl.getInput('webhookKey', true));
+                const payload = this.generatePayload();
+                const response = yield axios.default.post(`https://discordapp.com/api/webhooks/${webhookId}/${webhookKey}`, payload);
+                if (!this.isSuccess(response)) {
+                    console.log('Request failed [text]: ', response.statusText);
+                    console.log('Request failed [data]: ', response.data);
+                    this.tl.setResult(this.tl.TaskResult.Failed, `${JSON.stringify(response)}`);
+                    return false;
+                }
+                this.tl.setResult(this.tl.TaskResult.Succeeded, 'webhook message successful');
+                return true;
+            }
+            catch (err) {
+                this.tl.setResult(this.tl.TaskResult.Failed, JSON.stringify(err));
                 return false;
             }
-            this.tl.setResult(this.tl.TaskResult.Succeeded, 'webhook message successful');
-            return true;
-        }
-        catch (err) {
-            this.tl.setResult(this.tl.TaskResult.Failed, JSON.stringify(err));
-            return false;
-        }
+        });
     }
 }
 exports.AzureTask = AzureTask;
