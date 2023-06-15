@@ -9,7 +9,7 @@
     "version": {
         "Major": 2,
         "Minor": 0,
-        "Patch": 0
+        "Patch": 1
     },
     "instanceNameFormat": "Discord Webhook",
     "groups": [
@@ -66,13 +66,15 @@
             "groupName": "message",
             "name": "content",
             "type": "multiLine",
+            "label": "Message Content",
             "helpMarkDown": "Allows only a simple, message and supports Discord markdown"
         },
         {
             "groupName": "message",
             "name": "embeds",
             "type": "multiLine",
-            "helpMarkDown": "This allows for a more complex, JSON-driven definition of your message which is injected into the [embeds](https://discordapp.com/developers/docs/resources/webhook#execute-webhook) property"
+            "label": "Embeds",
+            "helpMarkDown": "This allows for a more complex, JSON-driven definition of your message which is injected into the [embeds](https://discordapp.com/developers/docs/resources/webhook#execute-webhook) property."
         },
         {
             "groupName": "message",

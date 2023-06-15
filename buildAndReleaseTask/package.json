@@ -1,6 +1,6 @@
 {
   "name": "ado-discord-webhook",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Allows the sending of custom messages to a Discord Webhook URL",
   "main": "index.js",
   "scripts": {
