@@ -1,5 +1,6 @@
-import {AzureTask} from "./azureTask";
+import {AzureTask, Inputs, postProcessRawEmbeds, UpdateMessageMode} from "./azureTask";
 import * as fs from "fs";
+
 const testCredentials: {
     webhookId: string,
     webhookKey: string,
@@ -27,25 +28,42 @@ describe('Sample task tests', () => {
     });
 
     it('should succeed with valid inputs', async () => {
-        setInput('webhookId', testCredentials.webhookId);
-        setInput('webhookKey', testCredentials.webhookKey);
-        setInput('content', 'Test <@' + testCredentials.mentionUserId + '>');
-        setInput('name', 'Azure DevOps TEST');
-        setInput('avatar', 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=retro&f=y');
-        setInput('embeds', testEmbed);
+        const inputs: Inputs = new Inputs();
+        inputs.webhookId = testCredentials.webhookId;
+        inputs.webhookKey = testCredentials.webhookKey;
+        inputs.content = 'Test <@' + testCredentials.mentionUserId + '>';
+        inputs.name = 'Azure DevOps TEST';
+        inputs.avatar = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=retro&f=y';
+        inputs.embeds = postProcessRawEmbeds(testEmbed);
 
-        const task = new AzureTask();
-        const success = await task.run();
-
-        console.log('Succeeded:', success);
+        const createTask = new AzureTask(inputs);
+        let success = await createTask.run();
         expect(success).toBe(true);//, 'should have succeeded');
-    });
+
+        await wait(2000);
+
+        inputs.updateMessageMode = UpdateMessageMode.edit;
+        inputs.content = 'Test <@' + testCredentials.mentionUserId + '> EDITED';
+        const editTask = new AzureTask(inputs);
+        success = await editTask.run();
+        expect(success).toBe(true);//, 'should have succeeded');
+
+        await wait(2000);
+
+        inputs.updateMessageMode = UpdateMessageMode.replace;
+        inputs.content = 'Test <@' + testCredentials.mentionUserId + '> REPLACED';
+        const replaceTask = new AzureTask(inputs);
+        success = await replaceTask.run();
+        expect(success).toBe(true);//, 'should have succeeded');
+
+    }, 10000);
 
     it('should fail with invalid webhookId and webhookKey', async () => {
-        setInput('webhookId', 'invalid_channel');
-        setInput('webhookKey', 'invalid_webhook');
+        const inputs: Inputs = new Inputs();
+        inputs.webhookId = 'invalid_channel';
+        inputs.webhookKey = 'invalid_webhook';
 
-        const task = new AzureTask();
+        const task = new AzureTask(inputs);
         const success = await task.run();
 
         console.log('Succeeded:', success);
@@ -78,3 +96,8 @@ const testEmbed =
           "url": \`https://www.google.de\`
         }
     ]`;
+
+
+export async function wait(timeInMilliseconds?: number): Promise<void> {
+    return await new Promise((resolve) => setTimeout(resolve, timeInMilliseconds));
+}
