@@ -24,7 +24,7 @@ function getUpdateMessageMode(updateMessageModeRaw: string | undefined) {
     return UpdateMessageMode.none;
 }
 
-function processString(raw: string | undefined, required?: boolean): string | undefined {
+function processString(raw: string | undefined): string | undefined {
     if (raw === undefined || raw === 'undefined' || raw === '')
         return undefined;
 

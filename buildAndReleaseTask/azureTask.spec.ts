@@ -7,15 +7,6 @@ const testCredentials: {
     mentionUserId: string
 } = JSON.parse(fs.readFileSync('test-credentials.json').toString());
 
-
-function getVariableKey(name: string) {
-    return name.replace(/\./g, '_').replace(/ /g, '_').toUpperCase();
-}
-
-function setInput(key: string, val: string) {
-    process.env['INPUT_' + getVariableKey(key)] = val;
-}
-
 describe('Sample task tests', () => {
     const OLD_ENV = process.env;
 
