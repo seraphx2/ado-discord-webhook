@@ -142,10 +142,21 @@ export class AzureTask {
                     message = await this.createMessage();
                     break;
                 case UpdateMessageMode.edit:
-                    message = await this.editMessage()
+                    try {
+                        message = await this.editMessage()
+                    } catch(ex) {
+                        console.log('Editing message FAILED. Trying to CREATE a new message instead. Exception was:\n\n' + JSON.stringify(ex));
+                        message = await this.createMessage();
+                    }
+
                     break;
                 case UpdateMessageMode.replace:
-                    await this.deleteMessage();
+                    try {
+                        await this.deleteMessage();
+                    } catch(ex) {
+                        console.log('Deleting message FAILED. Trying to move on. Exception was:\n\n' + JSON.stringify(ex));
+                    }
+
                     message = await this.createMessage();
                     break;
             }
