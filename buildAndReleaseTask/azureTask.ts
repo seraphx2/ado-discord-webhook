@@ -136,7 +136,7 @@ export class AzureTask {
     async run(): Promise<boolean> {
 
         try {
-            let message = null;
+            let message: DiscordMessageResponse | null = null;
             switch (this.inputs.updateMessageMode) {
                 case UpdateMessageMode.none:
                     message = await this.createMessage();
@@ -162,7 +162,7 @@ export class AzureTask {
             }
 
             if (!message) { // noinspection ExceptionCaughtLocallyJS
-                throw new Error('Discord\'s response didnt contain a message!');
+                throw new Error('No message on Discord was created/edited! Check the log for errors!');
             }
 
 
@@ -197,7 +197,7 @@ export class AzureTask {
         return inputs;
     }
 
-    private async createMessage() {
+    private async createMessage(): Promise<DiscordMessageResponse> {
         console.log('Creating message...');
 
         const payload: any = generateCreatePayload(this.inputs);
@@ -212,7 +212,7 @@ export class AzureTask {
         throw new Error('Creating message was unsuccessful.\nResponse: ' + JSON.stringify(response))
     }
 
-    private async editMessage() {
+    private async editMessage(): Promise<DiscordMessageResponse> {
         console.log('Editing message...');
         if(!this.inputs.updateMessageId) {
             throw new Error('updateMessageId is undefined')
@@ -230,7 +230,7 @@ export class AzureTask {
         throw new Error('Editing message with messageId ' + this.inputs.updateMessageId + ' was unsuccessful.\nResponse: ' + JSON.stringify(response))
     }
 
-    private async deleteMessage() {
+    private async deleteMessage(): Promise<void> {
         console.log('Deleting message...');
         if(!this.inputs.updateMessageId) {
             throw new Error('updateMessageId is undefined')
