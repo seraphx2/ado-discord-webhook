@@ -5,3 +5,4 @@ const azureTask = new azureTask_1.AzureTask();
 azureTask.run()
     .then(x => 'run completed')
     .catch(x => 'run failed');
+//# sourceMappingURL=index.js.map

@@ -82,6 +82,26 @@
             "type": "boolean",
             "label": "Text to Speech",
             "helpMarkDown": "This allows for the message content to be spoken out loud."
+        },
+        {
+            "groupName": "edit",
+            "name": "updateMessageMode",
+            "type": "pickList",
+            "label": "Update Message Mode",
+            "helpMarkDown": "Specifies if and how you want to update an already existing message. 'none' does not update an existing message, 'edit' modifies an existing message, 'replace' deletes an existing message and creates a new one. Default: 'none'",
+            "defaultValue": "none",
+            "options": {
+                "none": "none",
+                "edit": "edit",
+                "replace": "replace"
+            }
+        },
+        {
+            "groupName": "edit",
+            "name": "updateMessageId",
+            "type": "string",
+            "label": "Update Message ID",
+            "helpMarkDown": "Specifies which message to update. Defaults to environment variable 'discordWebhookLastMessageId', which is automatically set when a message is successfully created. If you need the messageId from another job or stage, you could utilize the output variable 'discordWebhookMessageId', which is also set by this task."
         }
     ],
     "execution": {
